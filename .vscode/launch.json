@@ -16,9 +16,15 @@
             "stopAtEntry": false
         },
         {
-            "name": ".NET Core Attach",
+            "name": "SqsConsumer",
             "type": "coreclr",
-            "request": "attach"
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/SQS/SqsConsumer/bin/Debug/net7.0/SqsConsumer.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/SQS/SqsConsumer",
+            "console": "internalConsole",
+            "stopAtEntry": false
         }
     ]
 }
