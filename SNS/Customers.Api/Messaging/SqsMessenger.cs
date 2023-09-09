@@ -1,30 +1,30 @@
 using System.Text.Json;
-using Amazon.SQS;
-using Amazon.SQS.Model;
+using Amazon.SimpleNotificationService;
+using Amazon.SimpleNotificationService.Model;
 using Microsoft.Extensions.Options;
 
 namespace Customers.Api.Messaging;
 
-public class SqsMessenger : ISqsMessenger
+public class SnsMessenger : ISnsMessenger
 {
-    private readonly IAmazonSQS _sqs;
-    private readonly IOptions<QueueSettings> _queueSettings;
-    private string? _queueUrl;
+    private readonly IAmazonSimpleNotificationService _sns;
+    private readonly IOptions<TopicSettings> _topicSettings;
+    private string? _topicArn;
 
-    public SqsMessenger(IAmazonSQS sqs, IOptions<QueueSettings> queueSettings)
+    public SnsMessenger(IAmazonSimpleNotificationService sns, IOptions<TopicSettings> queueSettings)
     {
-        _sqs = sqs;
-        _queueSettings = queueSettings;
+        _sns = sns;
+        _topicSettings = queueSettings;
     }
 
-    public async Task<SendMessageResponse> SendMessageAsync<T>(T message)
+    public async Task<PublishResponse> PublishMessageAsync<T>(T message)
     {
-        var queueUrl = await GetQueueUrlAsync();
+        var topicArn = await GetTopicArnAsync();
 
-        var sendMessageRequest = new SendMessageRequest
+        var sendMessageRequest = new PublishRequest
         {
-            QueueUrl = queueUrl,
-            MessageBody = JsonSerializer.Serialize(message),
+            TopicArn = topicArn,
+            Message = JsonSerializer.Serialize(message),
             MessageAttributes = new Dictionary<string, MessageAttributeValue>
             {
                 {
@@ -37,17 +37,17 @@ public class SqsMessenger : ISqsMessenger
             }
         };
 
-        return await _sqs.SendMessageAsync(sendMessageRequest);
+        return await _sns.PublishAsync(sendMessageRequest);
     }
 
-    private async Task<string> GetQueueUrlAsync()
+    private async ValueTask<string> GetTopicArnAsync()
     {
-        if (_queueUrl is null)
+        if (_topicArn is null)
         {
-            var queueUrlResponse = await _sqs.GetQueueUrlAsync(_queueSettings.Value.Name);
-            _queueUrl = queueUrlResponse.QueueUrl;
+            var topicArnResponse = await _sns.FindTopicAsync(_topicSettings.Value.Name);
+            _topicArn = topicArnResponse.TopicArn;
         }
 
-        return _queueUrl;
+        return _topicArn;
     }
 }

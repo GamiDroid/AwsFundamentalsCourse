@@ -1,6 +1,6 @@
 namespace Customers.Api.Messaging;
 
-public class QueueSettings
+public class TopicSettings
 {
     public const string Key = "Queue";
 
