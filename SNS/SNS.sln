@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customers.Consumer", "Custo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqsConsumer", "SqsConsumer\SqsConsumer.csproj", "{24784AED-C5BB-482F-B785-5947BCF3FFD7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnsPublisher", "SnsPublisher\SnsPublisher.csproj", "{4140786B-5647-43FC-BAB4-869F4D05AB39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{24784AED-C5BB-482F-B785-5947BCF3FFD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24784AED-C5BB-482F-B785-5947BCF3FFD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24784AED-C5BB-482F-B785-5947BCF3FFD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4140786B-5647-43FC-BAB4-869F4D05AB39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4140786B-5647-43FC-BAB4-869F4D05AB39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4140786B-5647-43FC-BAB4-869F4D05AB39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4140786B-5647-43FC-BAB4-869F4D05AB39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
