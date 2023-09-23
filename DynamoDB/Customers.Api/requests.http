@@ -19,18 +19,18 @@ Content-Type: application/json
 ###
 
 # @name getCustomerById
-@customerId = {{createCustomer.response.body.$.id}}
+@customerId = 583da162-2a8c-4d61-aaeb-0f74ff0aca5b
 GET {{baseUrl}}/customers/{{customerId}}
 
 ###
 
 # @name updateCustomer
-@customerId = {{createCustomer.response.body.$.id}}
+@customerId = 583da162-2a8c-4d61-aaeb-0f74ff0aca5b
 PUT {{baseUrl}}/customers/{{customerId}} HTTP/1.1
 Content-Type: application/json
 
 {
-    "fullName": "Kevin Damen",
+    "fullName": "Kevin Dingeman Damen",
     "email": "kevin.d.damen@gmail.com",
     "gitHubUserName": "GamiDroid",
     "dateOfBirth": "1996-12-03T00:00:00"
