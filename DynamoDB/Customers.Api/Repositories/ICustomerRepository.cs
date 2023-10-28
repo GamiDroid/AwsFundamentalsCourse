@@ -1,4 +1,5 @@
 ﻿using Customers.Api.Contracts.Data;
+using Customers.Api.Domain;
 
 namespace Customers.Api.Repositories;
 
@@ -7,6 +8,8 @@ public interface ICustomerRepository
     Task<bool> CreateAsync(CustomerDto customer);
 
     Task<CustomerDto?> GetAsync(Guid id);
+
+    Task<CustomerDto?> GetByEmailAsync(string email);
 
     Task<IEnumerable<CustomerDto>> GetAllAsync();
 
