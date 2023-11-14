@@ -12,3 +12,12 @@ var request = new GetSecretValueRequest
 var response = await secretsManagerClient.GetSecretValueAsync(request);
 
 Console.WriteLine(response.SecretString);
+
+var describeRequest = new DescribeSecretRequest
+{
+    SecretId = "ApiKey"
+};
+
+var describeResponse = await secretsManagerClient.DescribeSecretAsync(describeRequest);
+
+Console.WriteLine();
